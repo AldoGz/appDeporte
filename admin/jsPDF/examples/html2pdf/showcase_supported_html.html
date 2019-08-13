@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML Test File</title>
+<link rel="stylesheet" type="text/css" href="examples.css">
+<style>
+table,td {
+	border: 1px solid silver;
+	border-collapse: collapse
+}
+
+td {
+	padding: .5em
+}
+
+#table-list-styles td {
+	vertical-align: top;
+}
+
+.page-break {
+	page-break-before: always;
+}
+</style>
+</head>
+<body>
+	<div style='position: absolute; left: 0; top: 0; bottom: 0; overflow: auto; width: 400px'>
+		
+		<h1>Images</h1>
+		Images are subject to CORS restrictions an may only show up in a production environment.
+		When testing, we start Chrome with the '--allow-file-access-from-files' flag...
+
+		<img src="images/favicon.png" height="100" />
+
+		<h1 class='page-break'>Lists</h1>
+		<table id='table-list-styles'>
+			<tr>
+				<td>
+					<p>Default</p>
+					<ul>
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ul>
+					<p>Circle</p>
+					<ul style="list-style-type: circle;" data-mce-style="list-style-type: circle;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ul>
+					<p>Disk</p>
+					<ul style="list-style-type: disc;" data-mce-style="list-style-type: disc;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ul>
+					<p>Square</p>
+					<ul style="list-style-type: square;" data-mce-style="list-style-type: square;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ul>
+				</td>
+				<td>
+					<p>Default</p>
+					<ol>
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ol>
+					<p>Lower Alpha</p>
+					<ol style="list-style-type: lower-alpha;" data-mce-style="list-style-type: lower-alpha;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ol>
+					<p>Upper Alpha</p>
+					<ol style="list-style-type: upper-alpha;" data-mce-style="list-style-type: upper-alpha;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ol>
+				</td>
+				<td>
+					<p>Lower&nbsp;Roman</p>
+					<ol style="list-style-type: lower-roman;" data-mce-style="list-style-type: lower-roman;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ol>
+					<p>Upper&nbsp;Roman</p>
+					<ol style="list-style-type: upper-roman;" data-mce-style="list-style-type: upper-roman;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ol>
+					<p>Lower&nbsp;Greek</p>
+					<ol style="list-style-type: lower-greek;" data-mce-style="list-style-type: lower-greek;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ol>
+					<p>Upper&nbsp;Greek</p>
+					<ol style="list-style-type: upper-greek;" data-mce-style="list-style-type: upper-greek;">
+						<li>Milk</li>
+						<li>Eggs</li>
+						<li>Cheese</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+
+		<h1 class='page-break'>Hyperlinks</h1>
+		<h2>Internal</h2>
+		<p>
+			<a href="#colors" data-mce-href="#colors">Colors</a>
+		</p>
+		<p>
+			<a href="#font-sizes" data-mce-href="#font-sizes">Font Sizes</a>
+		</p>
+		<p>
+			<a href="#fonts" data-mce-href="#fonts">Fonts</a>
+		</p>
+		<p>
+			<a href="#tables" data-mce-href="#tables">Tables</a>
+		</p>
+		<h2>External</h2>
+		<p>
+			<a href="http://www.twelvetone.tv" data-mce-href="http://www.twelvetone.tv">www.twelvetone.tv</a>
+		</p>
+	</div>
+
+	<script src='../../dist/jspdf.debug.js'></script>
+	<script src='../../libs/html2pdf.js'></script>
+
+	<script>
+	  var pdf = new jsPDF('p', 'pt', 'letter');
+	  pdf.canvas.height = 72 * 11;
+	  pdf.canvas.width = 72 * 8.5;
+	  html2pdf(document.body, pdf, function(pdf){
+        var iframe = document.createElement('iframe');
+        iframe.setAttribute('style','position:absolute;right:0; top:0; bottom:0; height:100%; width:500px');
+        document.body.appendChild(iframe);
+        iframe.src = pdf.output('datauristring');
+	  });
+  </script>
+</body>
+</html>
